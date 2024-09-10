@@ -66,7 +66,7 @@ fun BusinessCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFEADDFF))
+            .background(Color(0xFFF0F4F8))
             
     ) {
         Column(
