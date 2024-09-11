@@ -7,9 +7,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -19,8 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.businesscardapp.ui.theme.BusinessCardAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -28,7 +34,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BusinessCardAppTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -55,11 +60,10 @@ fun BusinessCard(
     social: String,
     modifier: Modifier = Modifier
 ) {
-    val image = painterResource(R.drawable.android_logo)
-    val backgroundColor = Color(0xFFF0F4F8) // Soft light blue/gray
-    val rowColor = Color(0xFFD1E8E4) // Soft teal-green for the Row
-
-    // Main background
+    val image = painterResource(id = R.drawable.android_logo)
+    val phoneIcon = painterResource(id = R.drawable.phone_24dp_e8eaed)
+    val emailIcon = painterResource(id = R.drawable.email_24dp_e8eaed)
+    val socialIcon = painterResource(id = R.drawable.share_24dp_e8eaed)
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -67,7 +71,6 @@ fun BusinessCard(
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFFF0F4F8))
-            
     ) {
         Column(
             modifier = Modifier
@@ -78,12 +81,15 @@ fun BusinessCard(
                 contentDescription = "android logo",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
-                    .size(100.dp)
                     .padding(20.dp)
                     .align(Alignment.CenterHorizontally)
+                    .height(170.dp)
+                    .width(170.dp)
             )
+
             Text(
                 text = name,
+                fontSize = 30.sp,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .padding(10.dp)
@@ -91,26 +97,61 @@ fun BusinessCard(
 
             Text(
                 text = title,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
             )
         }
-        Text(
-            text = phone,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
+        )  {
+            Icon(
+                painter = phoneIcon,
+                contentDescription = "An icon of a phone",
+                modifier = Modifier
+                    .size(24.dp)
+            )
+            Text(
+                text = phone,
+                modifier = Modifier
+                    .padding(start = 8.dp)
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            //horizontalArrangement = Arrangement.Start,
             modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-        )
-        Text(
-            text = email,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(12.dp)
-        )
-        Text(
-            text = social,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-        )
+                .padding(8.dp)
+        )  {
+            Icon(
+                painter = emailIcon,
+                contentDescription = "An icon of a phone",
+                modifier = Modifier
+                    .size(24.dp)
+
+            )
+            Text(
+                text = email,
+                modifier = Modifier
+                    .padding(start = 24.dp)
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Icon(
+                painter = socialIcon,
+                contentDescription = "An icon of a phone",
+                modifier = Modifier.size(24.dp)
+            )
+            Text(
+                text = social,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
     }
 }
 
